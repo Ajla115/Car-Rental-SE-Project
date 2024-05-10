@@ -88,6 +88,39 @@ $(document).ready(function() {
         // Add any code to run when the route is ready
       }
     });
+
+    app.route({
+      view: 'payment',
+      load: 'payment.html',
+      onCreate: function() {
+        // Add any code to run when the route is created
+      },
+      onReady: function() {
+        // Add any code to run when the route is ready
+      }
+    });
+
+    app.route({
+      view: 'comments',
+      load: 'comments.html',
+      onCreate: function() {
+        // Add any code to run when the route is created
+      },
+      onReady: function() {
+        // Add any code to run when the route is ready
+      }
+    });
+
+    app.route({
+      view: 'reviews',
+      load: 'reviews.html',
+      onCreate: function() {
+        // Add any code to run when the route is created
+      },
+      onReady: function() {
+        // Add any code to run when the route is ready
+      }
+    });
   
     // Run the app after defining all routes
     app.run();
