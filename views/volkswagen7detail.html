@@ -68,6 +68,7 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <script src="assets/js/AppRoutes.js"></script>
     <script src="assets/js/car-info.js"></script>
+    <script src="assets/js/comments.js"></script>
 
 
     
@@ -112,86 +113,41 @@
     </section>
 
       
-
+<!--
     <div class="contentheight6">
-    <div class="hatchbacReviewsHeading">
-      <h1>REVIEWS</h1>
-    </div>
-    
-
-    <div class="hatchbackreviewsContainer">
-    </div>
-    <div class="hatchbackreviewsContainerText">
-    <h1><div id="Clientnamevw"></div></h1>
+      <div class="hatchbacReviewsHeading">
+        <h1>REVIEWS</h1>
       </div>
-    <div class="hatchbackReviewsClientContainer">
-      <h1><div id="testemonialtextvw"></div></h1>
-    </div>
-    </div>
-
-
-
-    <div class="contentheight8">
-
-      <div class="MinivanPaymentDetailsHeading">
-      <h1>ENTER YOUR PAYMENT DETAILS</h1>
-    </div>
     
-    <div class="MinivanPaymentInfoContainer">
-      <div class="MinivanPaymentLogo">
+      <div class="hatchbackreviewsContainer"></div>
+      <div class="hatchbackreviewsContainerText">
+        <h1><div id="Clientnamevw"></div></h1>
       </div>
-      <h1>Payment Info</h1>
-      <form id="paymentForm">
-        <h2>Full Name</h2>
-        <div class="MinivanPaymentInfoNameContainer">
-          <input type="text" id="name" placeholder="Enter your name" required>
-        </div>
-        <h3>Credit Card Number</h3>
-        <div class="MinivanPaymentInfoCardContainer">
-          <input type="text" id="cardNumber" placeholder="1234 1234 1234 1234" required>
-        </div>
-        <h4>Exp Date</h4>
-        <div class="MinivanPaymentExpDateCardContainer">
-          <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" required>
-        </div>
-        <h5>CVV</h5>
-        <div class="MinivanPaymentCVVCardContainer">
-          <input type="password" id="cvv" placeholder="CVV" maxlength="3" required>
-        </div>
-        <h6>Zip Code</h6>
-        <div class="MinivanPaymentZipCodeCardContainer">
-          <input type="text" id="zipCode" placeholder="71250" maxlength="5" required>
-        </div>
-        <button class="MinivanPaymentButton" type="submit"><h1>CONFIRM PAYMENT</h1></button>
-      </form>
+      <div class="hatchbackReviewsClientContainer">
+        <h1><div id="testemonialtextvw"></div></h1>
+      </div>
     </div>
-    </div>
-
-
+  -->
     
-    
-    
-      <script>
-
-        CarService.processPayment();
-
-        CarService.showToast();
-
-        CarService.getCarInfo(1);
-
-        CarService.getReview(3);
+    <!--<div><a href="#comments" class="btn btn-secondary py-2 ml-1" style="top: 1000px;">COMMENTS</a></div>-->
+    <div><a href="#reviews" class="btn btn-secondary py-2 ml-1" style="top: 1100px;">REVIEWS</a></div>
 
 
-       
-
-
-
-
-</script>
 
 
 </body>
+    
+<script>
 
+  CarService.processPayment();
+
+  CarService.showToast();
+
+  CarService.getCarInfo(1);
+
+  CarService.getReview(3);
+
+</script>
 
 </html>
 

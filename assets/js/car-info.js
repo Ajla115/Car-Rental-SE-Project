@@ -1,4 +1,5 @@
 var CarService = {
+    /*
     processPayment: function() {
         var self = this; 
         document.getElementById('paymentForm').addEventListener('submit', function(event) {
@@ -10,6 +11,16 @@ var CarService = {
             var expiryDate = document.getElementById('expiryDate').value;
             var cvv = document.getElementById('cvv').value;
             var zipCode = document.getElementById('zipCode').value;
+            var numberOfDays = parseInt(document.getElementById('numberOfDays').value);
+            
+            //var pricePerDay = document.getElementById('pricevw').value;
+            //var totalSum = pricePerDay * numberOfDays;
+            var totalSum = parseInt(8 * numberOfDays);
+
+            // Update total sum element
+            //document.getElementById('totalSum').textContent = totalSum;
+            //document.getElementById('totalSum').textContent = totalSum.toFixed(2);
+            document.getElementById('MinivanPaymentTotalSumContainer').textContent = totalSum.toFixed(2);
 
             // Check if all fields are filled
             if (name === '' || cardNumber === '' || expiryDate === '' || cvv === '' || zipCode === '') {
@@ -21,6 +32,45 @@ var CarService = {
             }
         });
     },
+    */
+    processPayment: function() {
+        var self = this;
+    
+        // Function to calculate and update total sum
+        function updateTotalSum() {
+            var numberOfDays = parseInt(document.getElementById('numberOfDays').value);
+            var totalSum = parseInt(80 * numberOfDays);
+            document.getElementById('MinivanPaymentTotalSumContainer').textContent = totalSum.toFixed(2);
+        }
+    
+        // Add event listeners to payment fields
+        document.getElementById('numberOfDays').addEventListener('input', updateTotalSum);
+        // Add more event listeners for other payment fields if needed
+    
+        document.getElementById('paymentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            // Retrieve form input values
+            var name = document.getElementById('name').value;
+            var cardNumber = document.getElementById('cardNumber').value;
+            var expiryDate = document.getElementById('expiryDate').value;
+            var cvv = document.getElementById('cvv').value;
+            var zipCode = document.getElementById('zipCode').value;
+    
+            // Check if all fields are filled
+            if (name === '' || cardNumber === '' || expiryDate === '' || cvv === '' || zipCode === '') {
+                // Display toaster message for missing fields
+                self.showToast('Please fill in all fields'); // change this line
+            } else {
+                // All fields filled, redirect to reservation.html
+                window.location.href = '#reservation';
+            }
+        });
+    
+        // Initial update of total sum
+        updateTotalSum();
+    },
+    
     showToast: function(message) {
         // Create toaster element
         var toaster = document.createElement('div');
