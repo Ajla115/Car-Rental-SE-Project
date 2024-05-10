@@ -30,10 +30,11 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js></script>
+<script src="../assets/js/utils.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="../assets/js/main.js"></script>
 <script src="../assets/js/restclient.js"></script>
-<script src="../assets/js/utils.js"></script>
+
 <script src="../assets/js/customer-service.js"></script>
 <script src="../assets/js/user-service.js"></script>
 
@@ -85,12 +86,36 @@
 
   <script>
   
-  UserService.init();
+  //UserService.init();
 
   Utils.password_toggle();
 
-  Utils.toaster();
+  Utils.toastr();
     
+  $('#login-form').on('submit', function(e) {
+    e.preventDefault();
+    var formData = {
+        email: $('#email').val(),
+        password: $('#password').val()
+    };
+    $.ajax({
+        url: "../rest/login",
+        type: "POST",
+        data: JSON.stringify(formData),
+        contentType: "application/json",
+        dataType: "json",
+        success: function (response) {
+            localStorage.setItem("user_token", response.jwt);
+            window.location = "../index2.html";
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+    // Use XMLHttpRequest.responseText to access the plain text response
+    var errorMessage = XMLHttpRequest.responseText || "Login failed with status: " + textStatus;
+    toastr.error(errorMessage);
+}
+    });
+});
+
 
 
 

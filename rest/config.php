@@ -1,4 +1,9 @@
 <?php
+
+
+define("EMAIL", "ajla.korman@stu.ibu.edu.ba");
+define("PASSWORD", "amvu4B");
+define("EMAIL2", "korman.ajla115@gmail.com");
 class Config
 {
     // $host = 'localhost' might not work, use '127.0.0.1' if that is the case
@@ -8,6 +13,7 @@ class Config
     // public static $username = 'root';
     // public static $password = 'a1b2c3d4e5';
     // public static $port = '3306';
+
 
 
     //This part below will be used when deploying the whole project with digital ocean

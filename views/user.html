@@ -99,39 +99,56 @@
   <div class="section-title d-flex justify-content-center align-items-center flex-column">
     <img src="./assets/img/userIcon.png" alt="User profile icon" class="img-fluid section-title user-logo">
     <h3 class="user-name" id="fullnameDiv"></h3>
+    <h3 class="user-name" id="customerID"></h3>
+   
   </div>
   <br>
   <div class="form-row">
     <h4 class="title title-spacing">Account Information</h4>
         <div class="button-container">
-       
+        
       <button type="button"
       onClick = "UserService.logout()"
       class="btn btn-danger btn-sm">
       Logout</button>
+      
     </div> 
     </div>
     <hr>
 
     
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label>First name</label>
-        <div class="custom-div" id="firstnameDivContainer"><span id="firstnameDiv"></span></div>
-      </div>
-      <div class="form-group col-md-6">
-        <label>Last name</label>
-        <div class="custom-div" id="lastnameDivContainer"><span id="lastnameDiv"></span></div>
+    <div class="form-group col-md-6">
+      <label>First name</label>
+      <div class="custom-div" id="firstnameDivContainer">
+          <span id="firstnameDiv"></span>
+          <input type="text" class="form-control" id="firstnameInput" style="display:none;">
+          <!--jedna opcija je ovdje dodati atribut name = "customer_name" i to da se zove isto kao i u bazi da bi bilo lakse prebaciti,
+          i to sve ponoviti za sva input polja ili tamo u js srediti da nazivi polja koja se salju budu kao u bazi-->
       </div>
   </div>
-  
-  <div class="form-row">
-      <div class="form-group col-md-12">
-        <label>Email</label>
-        <div class="custom-div" id="emailDivContainer"><span id="emailDiv"></span></div>
+  <div class="form-group col-md-6">
+      <label>Last name</label>
+      <div class="custom-div" id="lastnameDivContainer">
+          <span id="lastnameDiv"></span>
+          <input type="text" class="form-control" id="lastnameInput" style="display:none;">
       </div>
-
+  </div>
+  <div class="form-group col-md-12">
+      <label>Email</label>
+      <div class="custom-div" id="emailDivContainer">
+          <span id="emailDiv"></span>
+          <input type="email" class="form-control" id="emailInput" style="display:none;">
+      </div>
+  </div>
+  <div class="form-row">
+    <div class="button-container">
+      <button id="editButton" class="btn btn-primary btn-sm" onclick="UserService.editAllFields()">Edit All</button>
+      <button id="saveButton" class="btn btn-success btn-sm" onclick="UserService.saveAllFields()" style="display:none;">Save All</button>
+      <button id="cancelButton" class="btn btn-secondary btn-sm" onclick="UserService.cancelAllEdits()" style="display:none;">Cancel</button>
+    </div>
+  </div>
+  
+  
 
 
 
@@ -144,6 +161,8 @@
 <script> 
 
 UserService.getUserInformation();
+
+
 
  
 </script>

@@ -1,6 +1,42 @@
 /*--------------------------------------------------------------
 # Generalne stvari
 --------------------------------------------------------------*/
+/*blur out za email poruke*/
+@keyframes blurOut {
+  0% {
+      opacity: 1;
+      filter: blur(0px);
+  }
+  100% {
+      opacity: 0;
+      filter: blur(5px);
+  }
+}
+
+.blur-out {
+  animation: blurOut 7s forwards;
+}
+/* ovo mi je za editovanje user podataka*/
+.form-control {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.button-container {
+  display: flex;
+  justify-content: start; /* Aligns buttons to the left */
+  gap: 10px; /* Space between buttons */
+}
+
 
 /*button za usera*/
 .small-button {
