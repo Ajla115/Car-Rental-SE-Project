@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `rentacar` /*!40100 DEFAULT CHARACTER SET utf8mb4
 USE `rentacar`;
 -- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: rentacar
+-- Host: localhost    Database: rentacar
 -- ------------------------------------------------------
 -- Server version	8.0.29
 
@@ -98,9 +98,9 @@ CREATE TABLE `customers` (
   `customer_name` varchar(45) DEFAULT NULL,
   `customer_surname` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
+  `password` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +109,7 @@ CREATE TABLE `customers` (
 
 LOCK TABLES `customers` WRITE;
 /*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES (1,'Tarik','Karahodzic','tarik.karahodzic@live.com','Bosanska 13'),(2,'Benjamin','Dlakic','benjamin.dlakic@live.com','Ilidzanska 2'),(3,'Mustafa','Ajanovic','mustafa.ajanovic@live.com','Kiseljak 9'),(4,'Amir','Basovic','amir.basovic@live.com','Visoko 6'),(5,'Mujo','Mujic','mujo.mujic@live.com','Trg Nezavisnosti 13'),(6,'Rijad','Cvorak','rijad.cvorak@live.com','Bosanska 13'),(7,'Aner','Salcin','aner.salcin@live.com','Stupska 34'),(8,'Haris','Kadic','haris.kadic@live.com','Bajrama Zenunija 6'),(9,'Naim','Pjanic','naim.pjanic@live.com','Hasana Mujezinovica'),(10,'Nur','Fulin','nur.fulin@live.com','Trg Nezavisnosti 2'),(11,'Lamija','Zuko','lamija.zuko@live.com','Stupska 64'),(12,'Melisa','Geca','melisa.geca@live.com','Meha Drljevica 4'),(13,'Asja','Maric','asja.maric@live.com','Hamdije Kresevljakovica 14'),(14,'asdasd','asdasd','ajla.korman@stu.ibu.edu.ba','R.4NLQ5V7'),(15,'Ajla','Korman','ajla.korman@stu.ibu.edu.ba','1234'),(16,'Mustafa','Ajanovic','mustafa.ajanovic@stu.ibu.edu.ba','81dc9bdb52d04dc20036dbd8313ed055'),(17,'Ajla','Korman','ajla.korman@stu.ibu.edu.ba','827ccb0eea8a706c4c34a16891f84e7b'),(18,'Suada','Korman','suada.korman@stu.ibu.edu.ba','8cf52cf24260bc49455e30d6cc7acee1'),(19,'Suada','Korman','suada.korman@stu.ibu.edu.ba','8cf52cf24260bc49455e30d6cc7acee1'),(20,'Tarik','Korman','tarik.korman@gmail.com','fb5472d0ee866623186cf0b83ac8f8f1'),(21,'Lamija','Colic','lamija.colic@gmail.com','00dc2efa66ca952ad177f437a00c5bdc'),(22,'Selma','Grabovica','selma.grabovica@gmail.com','2bfa99427eef278ff198a11cdaaf2b35'),(23,'Suad','Grabovica','suad.grabovica@gmail.com','8253c06bad235d7a7418a24ececd9b96'),(24,'Emrah','Grabovica','emrah.grabovica@gmail.com','4468d7aab92f910f7b3ce92d57a86bc2'),(48,'demo65','demo65','demo65@gmail.com','5d78e2fbabdeef078fa614f133738bc5'),(49,'Azra','Maric','azra.maric@gmail.com','9fd250719005a092b414627772c18700'),(50,'deo678','deo678','deo678@gmail.com','e10adc3949ba59abbe56e057f20f883e'),(51,'demo36','demo36','demo36@gmail.com','d534579c65afccfb460d3d2fc7594303'),(52,'demo37','demo37','demo37@gmail.com','ae8554037601dbcc6a74991d6eb3e151'),(53,'demo38','demo38','demo38@gmail.com','3e156eb55122d98eee23b5a345d788dd'),(54,'demo1','demo1','demo1@gmail.com','e10adc3949ba59abbe56e057f20f883e'),(55,'demo2','demo2','demo2@gmail.com','1066726e7160bd9c987c9968e0cc275a'),(56,'demo3','demo3','demo3@gmail.com','297e430d45e7bf6f65f5dc929d6b072b'),(57,'demo71','demo71','demo71@gmail.com','ac8e5b2d61b1064f2678a9b7a9af4521'),(58,'demo72','demo72','demo72@gmail.com','b518451660b34e65c753b5aedb5c5800'),(59,'demo36','demo36','demo36@gmail.com','d534579c65afccfb460d3d2fc7594303'),(60,'Huso','husic','huso@mail.com','d5fe63abe1bf5b2c847ec3f6bb7a284f'),(61,'demo40','demo40','demo40@gmail.com','4497f0f358e037095dc36f10af9be898'),(62,'demo99','demo99','demo99@gmail.com','06a926a8a48a5feff8b1bd581f390917'),(63,'demo100','demo100','demo100@gmail.com','78c247a5c2bb2370289e43031086fb5a'),(64,'Elvedin','Sakic','elvedin.sakic@gmail.com','49c4ea46fa0852701fe1f40e02aa8824'),(65,'Zikrija','Maslenjak','ziki.maslo@gmail.com','213f0e64755fad83929e59e027dce9f6');
+INSERT INTO `customers` VALUES (1,'Tarik','Karahodzic','tarik.karahodzic@live.com','Bosanska 13'),(2,'Benjamin','Dlakic','benjamin.dlakic@live.com','Ilidzanska 2'),(3,'Mustafa','Ajanovic','mustafa.ajanovic@live.com','Kiseljak 9'),(4,'Amir','Basovic','amir.basovic@live.com','Visoko 6'),(5,'Mujo','Mujic','mujo.mujic@live.com','Trg Nezavisnosti 13'),(6,'Rijad','Cvorak','rijad.cvorak@live.com','Bosanska 13'),(7,'Aner','Salcin','aner.salcin@live.com','Stupska 34'),(8,'Haris','Kadic','haris.kadic@live.com','Bajrama Zenunija 6'),(9,'Naim','Pjanic','naim.pjanic@live.com','Hasana Mujezinovica'),(10,'Nur','Fulin','nur.fulin@live.com','Trg Nezavisnosti 2'),(11,'Lamija','Zuko','lamija.zuko@live.com','Stupska 64'),(12,'Melisa','Geca','melisa.geca@live.com','Meha Drljevica 4'),(13,'Asja','Maric','asja.maric@live.com','Hamdije Kresevljakovica 14'),(14,'asdasd','asdasd','ajla.korman@stu.ibu.edu.ba','R.4NLQ5V7'),(15,'Ajla','Korman','ajla.korman@stu.ibu.edu.ba','1234'),(16,'Mustafa','Ajanovic','mustafa.ajanovic@stu.ibu.edu.ba','81dc9bdb52d04dc20036dbd8313ed055'),(17,'Ajla','Korman','ajla.korman@stu.ibu.edu.ba','827ccb0eea8a706c4c34a16891f84e7b'),(18,'Suada','Korman','suada.korman@stu.ibu.edu.ba','8cf52cf24260bc49455e30d6cc7acee1'),(19,'Suada','Korman','suada.korman@stu.ibu.edu.ba','8cf52cf24260bc49455e30d6cc7acee1'),(20,'Tarik','Korman','tarik.korman@gmail.com','fb5472d0ee866623186cf0b83ac8f8f1'),(21,'Lamija','Colic','lamija.colic@gmail.com','00dc2efa66ca952ad177f437a00c5bdc'),(22,'Selma','Grabovica','selma.grabovica@gmail.com','2bfa99427eef278ff198a11cdaaf2b35'),(23,'Suad','Grabovica','suad.grabovica@gmail.com','8253c06bad235d7a7418a24ececd9b96'),(24,'Emrah','Grabovica','emrah.grabovica@gmail.com','4468d7aab92f910f7b3ce92d57a86bc2'),(48,'demo65','demo65','demo65@gmail.com','5d78e2fbabdeef078fa614f133738bc5'),(49,'Azra','Maric','azra.maric@gmail.com','9fd250719005a092b414627772c18700'),(50,'deo678','deo678','deo678@gmail.com','e10adc3949ba59abbe56e057f20f883e'),(51,'demo36','demo36','demo36@gmail.com','d534579c65afccfb460d3d2fc7594303'),(52,'demo37','demo37','demo37@gmail.com','ae8554037601dbcc6a74991d6eb3e151'),(53,'demo38','demo38','demo38@gmail.com','3e156eb55122d98eee23b5a345d788dd'),(54,'demo1','demo1','demo1@gmail.com','e10adc3949ba59abbe56e057f20f883e'),(55,'demo2','demo2','demo2@gmail.com','1066726e7160bd9c987c9968e0cc275a'),(56,'demo3','demo3','demo3@gmail.com','297e430d45e7bf6f65f5dc929d6b072b'),(57,'demo71','demo71','demo71@gmail.com','ac8e5b2d61b1064f2678a9b7a9af4521'),(58,'demo72','demo72','demo72@gmail.com','b518451660b34e65c753b5aedb5c5800'),(59,'demo36','demo36','demo36@gmail.com','d534579c65afccfb460d3d2fc7594303'),(60,'Huso','husic','huso@mail.com','d5fe63abe1bf5b2c847ec3f6bb7a284f'),(61,'demo40','demo40','demo40@gmail.com','4497f0f358e037095dc36f10af9be898'),(62,'demo99','demo99','demo99@gmail.com','06a926a8a48a5feff8b1bd581f390917'),(63,'demo100','demo100','demo100@gmail.com','78c247a5c2bb2370289e43031086fb5a'),(64,'Elvedin','Sakic','elvedin.sakic@gmail.com','49c4ea46fa0852701fe1f40e02aa8824'),(65,'Zikrija','Maslenjak','ziki.maslo@gmail.com','213f0e64755fad83929e59e027dce9f6'),(66,'Ajla','Korman','ajla.korman@gmail.com','$2y$10$G.cRwL5FCi2MLPtrqUUk0ODY4xZqDoR1wLz/rM3/ANPwv.g3Id3G.'),(67,'Ilma','Gusinac','ilma.gusinac@gmail.com','$2y$10$IDHN/snvqV5OidE6jr.K9ueGlmU3q0ao3BkzhdoI3cAEMs2/afEH2'),(68,'Emina','Dedic','emina.dedic@gmail.com','$2y$10$KmAJN/vXQ38H1RFOWoPs5O6Q8niX5gxyfrm5kdLg8rS0lm3uZ9pyu');
 /*!40000 ALTER TABLE `customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,7 +216,7 @@ CREATE TABLE `testemonials` (
   `last_name` varchar(45) DEFAULT NULL,
   `comment` varchar(10000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,7 +225,7 @@ CREATE TABLE `testemonials` (
 
 LOCK TABLES `testemonials` WRITE;
 /*!40000 ALTER TABLE `testemonials` DISABLE KEYS */;
-INSERT INTO `testemonials` VALUES (1,'Jurica','Koletic','The customer service was exceptional! The staff went above and beyond to accommodate my needs and ensure a smooth rental experience.'),(2,'Damir','Begic','I had a last-minute change of plans and needed a rental car ASAP. This company was able to accommodate my request and provide excellent service and help despite the short notice. Thank you!'),(3,'Sanja','Omeragic','Great rental experience. The staff was friendly and helpful, and the car was in excellent condition. Highly recommend this company.'),(4,'Kerim','Kolic','I rented a car for a weekend getaway and was impressed with the affordable rates and variety of vehicle options. Will definitely use this rental company again.'),(5,'Yiu-han','Hodzic','As a new foreign resident, I had an excellent rental experience. The process was quick, the car was clean and well-maintained.');
+INSERT INTO `testemonials` VALUES (1,'Jurica','Koletic','The customer service was exceptional! The staff went above and beyond to accommodate my needs and ensure a smooth rental experience.'),(2,'Damir','Begic','I had a last-minute change of plans and needed a rental car ASAP. This company was able to accommodate my request and provide excellent service and help despite the short notice. Thank you!'),(3,'Sanja','Omeragic','Great rental experience. The staff was friendly and helpful, and the car was in excellent condition. Highly recommend this company.'),(4,'Kerim','Kolic','I rented a car for a weekend getaway and was impressed with the affordable rates and variety of vehicle options. Will definitely use this rental company again.'),(5,'Yiu-han','Hodzic','As a new foreign resident, I had an excellent rental experience. The process was quick, the car was clean and well-maintained.'),(7,'Ajla','Korman','Fantastic!');
 /*!40000 ALTER TABLE `testemonials` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,4 +294,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-12 16:59:47
+-- Dump completed on 2024-05-10 19:45:53
