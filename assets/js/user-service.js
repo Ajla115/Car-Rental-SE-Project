@@ -59,6 +59,8 @@ var UserService = {
   setupEditableFields: function () {
     $("#editButton").click(function () {
       UserService.editAllFields();
+      $("#editButton").hide(); // Hide Edit button
+      $("#saveButton, #cancelButton").show(); // Show Save and Cancel buttons
     });
     $("#saveButton").click(function () {
       UserService.saveAllFields();
@@ -67,6 +69,7 @@ var UserService = {
       UserService.cancelAllEdits();
     });
   },
+  
 
   editAllFields: function () {
     ["firstname", "lastname", "email"].forEach((field) => {

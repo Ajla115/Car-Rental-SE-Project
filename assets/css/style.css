@@ -33,10 +33,15 @@
 
 .button-container {
   display: flex;
-  justify-content: start; /* Aligns buttons to the left */
-  gap: 10px; /* Space between buttons */
+  justify-content: space-between; /* Adjust alignment */
+  align-items: center; /* Adjust alignment */
 }
-
+#cancelButton {
+  font-size: 12px; /* Adjust font size to make the button text smaller */
+  margin-left: 350px; 
+  margin-top:450px;
+   /* Remove fixed margin */
+}
 
 /*button za usera*/
 .small-button {
@@ -8850,11 +8855,12 @@ background: #1887C7;
 
 .MinivanPaymentDetailsHeading h1{
 
-  position: absolute;
+position: absolute;
 width: 391px;
 height: 35px;
-left: 40px;
-top: 1060px;
+left: 50%;
+transform: translateX(-50%);
+top: 120px;
 
 font-family: 'Poppins';
 font-style: normal;
@@ -8873,30 +8879,54 @@ color: #000000;
   position: absolute;
   width: 371.02px;
   height: 0px;
-  left: 424px;
+  left: 50%;
+  transform: translateX(-50%); 
   top: 1110px;
   
   border: 1px solid #1887C7;
 
 }
-
+.payment-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 360px;
+}
 
 
 .MinivanPaymentInfoContainer{
 
-  display: flex;
+/*display: flex;
 flex-direction: column;
-align-items: flex-start;
+align-items: center; 
 padding: 16px 30px 30px;
 gap: 24px;
+left: 400px;
+
+width: 100%;
+max-width: 360px;
+height: auto;
+ 
+background: #FFFFFF;
+box-shadow: 0px 4px 20px rgba(77, 166, 186, 0.38);
+border-radius: 15px;
+*/
 
 position: absolute;
-width: 360px;
-/*height: 584px;*/
-height: 1000px;
-left: 533px;
-top: 1180px;
-
+top: 200px; /* Adjust as needed to create space for the navigation bar */
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 16px 30px 30px;
+gap: 24px;
+width: 100%;
+max-width: 360px;
+height: auto;
 background: #FFFFFF;
 box-shadow: 0px 4px 20px rgba(77, 166, 186, 0.38);
 border-radius: 15px;
@@ -8906,8 +8936,10 @@ border-radius: 15px;
 
 .MinivanPaymentInfoContainer h1{
   position: absolute;
-  top: 65px;
-  left: 97.5px;
+  top: 5px;
+  /*left: 650px;*/
+  left: 50%;
+  transform: translateX(-50%);
   width: 165px;
   height: 36px;
   
@@ -8925,7 +8957,8 @@ border-radius: 15px;
 .MinivanPaymentInfoContainer h2{
 position: absolute;
 top: 122px;
-left: 30px;
+left: 50%;
+transform: translateX(-50%);
 width: 79px;
 height: 24px;
 
@@ -8949,12 +8982,14 @@ flex-grow: 0;
 }
 
 .MinivanPaymentInfoNameContainer {
+  display: flex;
   position: absolute;
   top: 166px;
-  left: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   padding: 8px 12px;
   gap: 10px;
@@ -8976,7 +9011,9 @@ flex-grow: 0;
   border: none;
   background: none;
   outline: none;
+ 
 }
+
 
 
 
@@ -8984,7 +9021,8 @@ flex-grow: 0;
 .MinivanPaymentInfoContainer h3{
 position: absolute;
 top: 220px;
-left: 30px;
+left: 50%;
+transform: translateX(-50%);
 width: 162px;
 height: 24px;
 
@@ -9011,7 +9049,8 @@ flex-grow: 0;
   .MinivanPaymentInfoCardContainer {
     position: absolute;
     top: 264px;
-    left: 30px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -9041,7 +9080,8 @@ flex-grow: 0;
 
 position: absolute;
 top: 318px;
-left: 30px;
+left: 60%;
+transform: translateX(-50%);
 width: 69px;
 height: 24px;
 
@@ -9069,7 +9109,8 @@ flex-grow: 0;
   .MinivanPaymentExpDateCardContainer {
     position: absolute;
     top: 352px;
-    left: 30px;
+    left: 70%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -9100,8 +9141,9 @@ flex-grow: 0;
   
   position: absolute;
   top: 318px;
-  left: 186px;
-  width: 34px;
+  left: 17%;
+  transform: translateX(-50%);
+    width: 34px;
 height: 24px;
 
 font-family: 'Poppins';
@@ -9129,7 +9171,8 @@ flex-grow: 0;
 .MinivanPaymentCVVCardContainer {
   position: absolute;
   top: 352px;
-  left: 186px;
+  left: 29%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -9158,7 +9201,8 @@ flex-grow: 0;
 
 position: absolute;
 top: 416px;
-left: 30px;  
+left: 50%;
+transform: translateX(-50%);
 width: 81px;
 height: 24px;
 
@@ -9186,7 +9230,8 @@ flex-grow: 0;
 
   position: absolute;
   top: 510px;
-  left: 30px;  
+  left: 60%;
+  transform: translateX(-50%);
   width: 200px;
   height: 24px;
   
@@ -9214,7 +9259,8 @@ flex-grow: 0;
 .MinivanPaymentZipCodeCardContainer {
   position: absolute;
   top: 450px;
-  left: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -9241,7 +9287,8 @@ flex-grow: 0;
 .MinivanPaymentNumberOfDaysCardContainer {
   position: absolute;
   top: 550px;
-  left: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -9268,7 +9315,8 @@ flex-grow: 0;
 .MinivanPaymentTotalSumContainer {
   position: absolute;
   top: 650px;
-  left: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -9288,7 +9336,8 @@ flex-grow: 0;
 
   position: absolute;
   top: 615px;
-  left: 30px;  
+  left: 65%;
+  transform: translateX(-50%);
   width: 200px;
   height: 24px;
   
@@ -9314,8 +9363,9 @@ flex-grow: 0;
 
 .MinivanPaymentButton {
   position: absolute;
-  top: 800px;
-  left: 30px;
+  top: 750px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9340,9 +9390,11 @@ flex-grow: 0;
 
 .MinivanPaymentButton h1{
 
-position: absolute;
-top: 0px;
-left: 54px;
+/*position: absolute;*/
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+
 width: 192px;
 height: 30px;
 
