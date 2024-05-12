@@ -35,37 +35,39 @@ Flight::register('carinfoService', "CarinfoService");
 Flight::register('visitsService', "VisitsService");
 
 Flight::register('userDao', "UserDao");
+Flight::register('customerDao', "CustomerDao");
 
 // middleware
-  Flight::route('/*', function(){
-    
-    $path = Flight::request()->url;
-    if ($path == '/login'  || $path == '/customer' || $path == '/docs.json') return TRUE; 
-    //deleted || $path == '/customers' because that was not needed
-    //login and signup are excluded from auth
-    //since they are excluded, anybody can access those
-    //this customer is related to route for signup
+// Flight::route('/*', function () {
 
-   $headers = getallheaders();
-    //Flight::json(['headers' => $headers]);
-    if (@!$headers['Authorization']){
-      Flight::json(["message" => "Authorization is missing"], 403);
-      return FALSE;
-    }else{
-      try {
-        $decoded = (array)JWT::decode($headers['Authorization'], new Key(Config::JWT_SECRET(), 'HS256'));
-        Flight::set('user', $decoded);
-        return TRUE;
-      } catch (\Exception $e) {
-        Flight::json(["message" => "Authorization token is not valid"], 403);
-        return FALSE;
-      }
-    }
-  });
+//   $path = Flight::request()->url;
+//   if ($path == '/login' || $path == '/customer' || $path == '/docs.json')
+//     return TRUE;
+//   //deleted || $path == '/customers' because that was not needed
+//   //login and signup are excluded from auth
+//   //since they are excluded, anybody can access those
+//   //this customer is related to route for signup
+
+//   $headers = getallheaders();
+//   //Flight::json(['headers' => $headers]);
+//   if (@!$headers['Authorization']) {
+//     Flight::json(["message" => "Authorization is missing"], 403);
+//     return FALSE;
+//   } else {
+//     try {
+//       $decoded = (array) JWT::decode($headers['Authorization'], new Key(Config::JWT_SECRET(), 'HS256'));
+//       Flight::set('user', $decoded);
+//       return TRUE;
+//     } catch (\Exception $e) {
+//       Flight::json(["message" => "Authorization token is not valid"], 403);
+//       return FALSE;
+//     }
+//   }
+// });
 
 
 /* REST API documentation endpoint */
-Flight::route('GET /docs.json', function(){
+Flight::route('GET /docs.json', function () {
   $openapi = \OpenApi\scan('routes');
   header('Content-Type: application/json');
   echo $openapi->toJson();
@@ -79,7 +81,6 @@ require_once __DIR__ . '/routes/EmployeeRoutes.php';
 require_once __DIR__ . '/routes/LocationRoutes.php';
 require_once __DIR__ . '/routes/ReviewRoutes.php';
 require_once __DIR__ . '/routes/VehicleRoutes.php';
-require_once __DIR__ . '/routes/UserRoutes.php';
 require_once __DIR__ . '/routes/TestemonialsRoutes.php';
 require_once __DIR__ . '/routes/CarinfoRoutes.php';
 require_once __DIR__ . '/routes/VisitsRoutes.php';
