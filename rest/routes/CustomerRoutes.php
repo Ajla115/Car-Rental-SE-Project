@@ -132,9 +132,20 @@ Flight::route("PUT /customers/@id", function ($id) {
 
 //works
 //delete one customer based upon its id as a parameter
+/*
 Flight::route('DELETE /customers/@id', function ($id) {
     Flight::customerService()->delete($id);
+});*/
+Flight::route('DELETE /customers/@id', function ($id) {
+    try {
+        Flight::customerService()->delete($id);
+        Flight::json(['message' => 'Customer deleted successfully']);
+    } catch (Exception $e) {
+        error_log($e->getMessage());
+        Flight::halt(500, 'Internal Server Error');
+    }
 });
+
 
 /**
  * @OA\Post(

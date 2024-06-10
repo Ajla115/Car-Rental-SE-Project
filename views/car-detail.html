@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Car Details</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicon -->
+  <link href="../assets/img/car-icon.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
+  <script src="../assets/js/jquery.spapp.js"></script>
+  <script src="../assets/js/custom.js"></script>
+  <script src="../assets/js/intro.js"></script>
+  <script src="../assets/js/utils.js"></script>
+  <script src="../assets/js/rest-client.js"></script>
+  <script src="assets/js/user-service.js"></script>
+  <script src="../config.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="../assets/js/jQuerySPApp.js"></script>
+
+  <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    
+
+  <section id="carDetail">
+    <div class="container">
+      <h1>Car Details</h1>
+      <div id="carDetailContainer">
+        <!-- Car details will be dynamically populated here -->
+      </div>
+    </div>
+  </section>
+
+  <script>
+    $(document).ready(function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const carId = urlParams.get('id');
+
+      if (carId) {
+        fetchCarDetails(carId);
+      } else {
+        alert('No car ID provided');
+      }
+    });
+
+    function fetchCarDetails(carId) {
+      $.ajax({
+        url: `../rest/carinfo/${carId}`,
+        type: "GET",
+        success: function(data) {
+          const car = data[0];
+          const carDetailHtml = `
+            <div class="cardetails">
+              <div class="img rounded d-flex align-items-end" style="background-image: url(../assets/img/aboutUs2.jpg);"></div>
+            </div>
+            <div class="vw7description">
+              <h1>
+                <li><span>Car Name:</span> ${car.car_name}</li>
+                <li><span>Price:</span> ${car.price} BAM</li>
+                <li><span>Age:</span> ${car.age} years</li>
+                <li><span>Milage:</span> ${car.mileage} km</li>
+                <li><span>Fuel:</span> ${car.fuel}</li>
+                <li><span>Fuel Usage:</span> ${car.fuel_usage} L/100 km</li>
+                <li><span>Gearbox:</span> ${car.gearbox}</li>
+                <li><span>Max Passengers:</span> ${car.max_passengers}</li>
+              </h1>
+            </div>
+          `;
+          $('#carDetailContainer').html(carDetailHtml);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.error('Error fetching car details:', textStatus, errorThrown);
+        }
+      });
+    }
+  </script>
+
+</body>
+
+</html>

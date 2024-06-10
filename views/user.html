@@ -56,28 +56,25 @@
  
 
  <style>
-.user-nav-link {
-  margin-left: -15px;
-}
+      .user-nav-link {
+        margin-left: -15px;
+      }
 
-.custom-div {
-  border: 1px solid #ced4da;
-  border-radius: .25rem;
-  padding: .375rem .75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
+      .custom-div {
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      }
 
-.title-spacing {
-  margin-right: 690px;
-}
-
-
-
+      .title-spacing {
+        margin-right: 690px;
+      }
 
  </style>
 
@@ -107,11 +104,10 @@
     <h4 class="title title-spacing">Account Information</h4>
         <div class="button-container">
         
-      <button type="button"
-      onClick = "UserService.logout()"
-      class="btn btn-danger btn-sm">
-      Logout</button>
-      
+      <button type="button" onClick = "UserService.logout()" class="btn btn-danger btn-sm">Logout</button>
+      <button type="button" onClick="window.location.href='views/listofusers.html'" class="btn btn-info btn-sm">List of Users</button>
+      <button type="button" class="btn btn-info btn-sm" onClick="window.location.href='views/add-car.html'">Add Car</button>
+      <button onclick="location.href='views/manage-car.html'" class="btn btn-info btn-sm">Manage Car</button>
     </div> 
     </div>
     <hr>
@@ -150,18 +146,15 @@
   </div>
 
   </div>
-  
+  <!--<button type="button" class="btn btn-primary" onClick="window.location.href='views/add-car.html'">Add New Car</button>-->
   <hr>
   </section>
 
 
 <script> 
 
-UserService.getUserInformation();
+  UserService.getUserInformation();
 
-
-
- 
 </script>
 
 

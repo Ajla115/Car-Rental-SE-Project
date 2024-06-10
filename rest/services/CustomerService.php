@@ -133,6 +133,15 @@ class CustomerService extends BaseService
         return $this->dao->customUpdate($data);
     }
 
+    public function delete($id) {
+        try {
+            $this->dao->delete($id);
+        } catch (Exception $e) {
+            throw new Exception('Error deleting customer: ' . $e->getMessage());
+        }
+    }
+    
+
 
 
 }

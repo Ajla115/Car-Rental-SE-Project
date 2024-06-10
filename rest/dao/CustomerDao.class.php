@@ -58,6 +58,17 @@ class CustomerDao extends BaseDao
         }
     }
 
+    public function delete($id) {
+        $stmt = $this->conn->prepare("DELETE FROM customers WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            throw new Exception('Failed to delete customer');
+        }
+    }
+    
+
 }
 
 
