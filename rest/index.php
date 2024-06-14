@@ -41,7 +41,7 @@ Flight::register('customerDao', "CustomerDao");
 Flight::route('/*', function(){
   //perform JWT decode
   $path = Flight::request()->url;
-  if ($path == '/login'  || $path == '/resetpassword'|| $path == '/tests' || $path == '/visitors' ||  $path == '/customer' ||  $path == '/docs.json') return TRUE; 
+  if ($path == '/login'  || $path == '/resetpassword' || $path == '/sendemail' || $path == '/tests' || $path == '/visitors' ||  $path == '/customer' ||  $path == '/docs.json') return TRUE; 
 
  $headers = getallheaders();
   if (@!$headers['Authorization']){

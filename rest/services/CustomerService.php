@@ -2,6 +2,10 @@
 require_once 'BaseService.php';
 require_once __DIR__ . "/../dao/CustomerDao.class.php";
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 use Firebase\JWT\JWT;
 
 class CustomerService extends BaseService
@@ -252,6 +256,46 @@ class CustomerService extends BaseService
     {
         $result = Flight::customerDao()->updatePassword($password, $email);
         return $result;
+    }
+
+    public function sendEmail($data)
+    {
+        $subject = $data["subject"];
+        $body = $data["body"];
+        $email = $data["email"];
+        $recipientName = $data["name"];
+        $mail = new PHPMailer(true);
+        try {
+            //Server settings
+            //$mail->SMTPDebug = SMTP::DEBUG_SERVER; //Enable verbose debug output
+            $mail->SMTPDebug = SMTP::DEBUG_OFF; //Enable verbose debug output
+            //ovo debug off sam stavila da nemam onaj ogromni output, sta se desava u svakoj sekundi slanja emaila
+
+            $mail->isSMTP(); //Send using SMTP
+            $mail->Host = 'smtp.eu.mailgun.org'; //Set the SMTP server to send through
+            $mail->SMTPAuth = true; //Enable SMTP authentication
+            $mail->Username = 'postmaster@dr-korman-ajla.tech'; //SMTP username
+            $mail->Password = '8f9103ee36c42bd4797841ece2c3da3b-ed54d65c-dcdb0b29'; //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; //Enable implicit TLS encryption
+            $mail->Port = 587;
+            //465, TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+            //port 587 mi ovdje nije radio iako mi je bilo preporuceno da njega stavim
+            //Recipients
+            $mail->setFrom('ajla.korman@stu.ibu.edu.ba', 'Car Rental SE Project');
+            $mail->addAddress($email, $recipientName); //Add a recipient
+            //Content
+            $mail->isHTML(true); //Set email format to HTML
+            $mail->Subject = $subject;
+            $mail->Body = $body;
+            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->send();
+            return array("status" => 200, "message"=>"Email is sent!");
+        } catch (Exception $e) {
+            error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}\n");
+            //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
     }
 
     

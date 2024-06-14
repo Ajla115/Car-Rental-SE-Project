@@ -285,3 +285,35 @@ Flight::route("PUT /resetpassword", function () {
     $data = Flight::request()->data->getData();
     Flight::json(Flight::customerService()->resetPassword($data));
 });
+
+
+/**
+ * @OA\Post(
+ *     path="/sendemail", security={{"ApiKeyAuth": {}}},
+ *     description="Send email",
+ *     tags={"customers"},
+ *     @OA\RequestBody(description="Send email", required=true,
+ *       @OA\MediaType(mediaType="application/json",
+ *    			@OA\Schema(
+ *                   @OA\Property(property="email", type="string", example="demo@admin.gmail.com",	description="Customer email" ),
+ *        )
+ *     )),
+ *     @OA\Response(
+ *         response=200,
+ *         description="Admin has been added"
+ *     ),
+ *     @OA\Response(
+ *         response=500,
+ *         description="Error"
+ *     )
+ * )
+ */
+
+//works
+//add admin
+Flight::route('POST /sendemail', function () {
+    $data = Flight::request()->data->getData();
+
+    Flight::json(Flight::customerService()->sendEmail($data));
+});
+
