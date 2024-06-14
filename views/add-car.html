@@ -116,6 +116,12 @@
           type: 'POST',
           data: JSON.stringify(carData),
           contentType: 'application/json',
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader(
+                "Authorization",
+                 localStorage.getItem("user_token") 
+            );
+        },
           success: function(response) {
             alert(response.message);
             $('#addCarForm')[0].reset();

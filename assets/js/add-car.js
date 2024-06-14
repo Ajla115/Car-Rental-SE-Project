@@ -18,7 +18,7 @@ function addCar() {
         beforeSend: function(xhr) {
             xhr.setRequestHeader(
                 "Authorization",
-                "Bearer " + localStorage.getItem("jwt") // Assuming JWT is stored in localStorage
+                 localStorage.getItem("user_token") // Assuming JWT is stored in localStorage
             );
         },
         success: function(response) {

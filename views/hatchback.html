@@ -272,6 +272,9 @@
       $.ajax({
         url: `./rest/carinfo?car_type=${carType}`,
         type: "GET",
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", localStorage.getItem("user_token"));
+        },
         success: function(data) {
           const carContainer = $('#hatchbackCars');
           carContainer.empty();

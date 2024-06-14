@@ -58,7 +58,8 @@ class CustomerDao extends BaseDao
         }
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $stmt = $this->conn->prepare("DELETE FROM customers WHERE id = :id");
         $stmt->bindParam(':id', $id);
         if ($stmt->execute()) {
@@ -67,7 +68,40 @@ class CustomerDao extends BaseDao
             throw new Exception('Failed to delete customer');
         }
     }
-    
+
+    public function getAllAdmins()
+    {
+        try {
+            $stmt = $this->conn->prepare("SELECT id, customer_name, customer_surname, email FROM customers WHERE email LIKE '%@admin.gmail.com'");
+            $stmt->execute();
+            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $users; // Returning an array of users with their first name, last name, and email
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+
+    public function updatePassword($password, $email)
+    {
+
+        try {
+            $stmt = $this->conn->prepare("UPDATE customers SET password = :password WHERE email = :email");
+            $stmt->bindParam(':password', $password);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+                return array("status" => 200, "message" => "Password has been successfully updated.");
+            } else {
+                return array("status" => 500, "message" => "Password update has failed.");
+            }
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            return array("status" => 400, "message" => "Backend error");
+        }
+
+    }
+
 
 }
 

@@ -143,6 +143,12 @@
       $.ajax({
         url: '../rest/carinfo',
         type: 'GET',
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader(
+                "Authorization",
+                 localStorage.getItem("user_token") 
+            );
+        },
         success: function(data) {
           const carList = $('#carList');
           carList.empty();
@@ -180,6 +186,12 @@
         $.ajax({
           url: `../rest/carinfo/${id}`,
           type: 'DELETE',
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader(
+                "Authorization",
+                 localStorage.getItem("user_token") // Assuming JWT is stored in localStorage
+            );
+        },
           success: function(response) {
             alert('Car deleted successfully');
             loadCars();

@@ -31,6 +31,10 @@ class CustomerService extends BaseService
         return parent::update($entity, $id);
     }
 
+    public function getAllAdmins(){
+        return Flight::customerDao()->getAllAdmins();
+    }
+
 
 
     public function add($entity)
@@ -62,6 +66,11 @@ class CustomerService extends BaseService
             return ["status" => 400, "message" => "E-mail address is not in the right format"];
         }
 
+        // Check if the email is in the admin format
+        if (preg_match('/^.+@admin\.gmail\.com$/i', $email)) {
+            return ["status" => 400, "message" => "Only an admin can register other admins. You can't register yourself with this email."];
+        }
+
         if (mb_strlen($password) < 8) {
             return ["status" => 400, "message" => "The password should not be shorter than 8 characters."];
         }
@@ -71,20 +80,68 @@ class CustomerService extends BaseService
         }
 
 
+
+
         //Password was hashed using a modern bcrypt algorithm
         $password = $entity['password'];
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $entity['password'] = $hashedPassword;
         $newCustomer = parent::add($entity);
 
-        //password does not go in to the token
-        unset($entity['password']);
+        
+        return array("customer" => $newCustomer);
 
-        //Generate the JWT token
-        $jwt = JWT::encode($entity, Config::JWT_SECRET(), 'HS256');
+    }
 
-        // Return the JWT token in the response
-        return array("token" => $jwt, "customer" => $newCustomer);
+    public function addAdmin($entity)
+    {
+        //extract individual attributes from JSON object
+        $customer_name = $entity['customer_name'];
+        $customer_surname = $entity['customer_surname'];
+        $email = $entity['email'];
+        $password = $entity['password'];
+
+
+        if (empty($customer_name) || empty($customer_surname) || empty($password) || empty($email)) {
+            return array("status" => 400, "message" => "All fields are required.");
+
+        }
+
+        // Validate customer name and surname to only include letters and dashes
+        if (!preg_match('/^[a-zA-Z-]+$/', $customer_name)) {
+            return ["status" => 400, "message" => "Name should only contain letters and dashes."];
+        }
+
+
+        if (!preg_match('/^[a-zA-Z-]+$/', $customer_surname)) {
+            return ["status" => 400, "message" => "Surname should only contain letters and dashes."];
+        }
+
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return ["status" => 400, "message" => "E-mail address is not in the right format"];
+        }
+
+        if (!preg_match('/^.+@admin\.gmail\.com$/i', $email)) {
+            return ["status" => 400, "message" => "Admin email must be in the form @admin.gmail.com."];
+        }
+
+        if (mb_strlen($password) < 8) {
+            return ["status" => 400, "message" => "The password should not be shorter than 8 characters."];
+        }
+
+        if (mb_strlen($password) > 15) {
+            return ["status" => 400, "message" => "The password should not be longer than 15 characters."];
+        }
+
+        //Password was hashed using a modern bcrypt algorithm
+        $password = $entity['password'];
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $entity['password'] = $hashedPassword;
+        $newCustomer = parent::add($entity);
+
+        
+        return array("customer" => $newCustomer);
 
     }
 
@@ -110,11 +167,19 @@ class CustomerService extends BaseService
         if (!$user || !password_verify($password, $user['password'])) {
             // User not found, indicate that the email does not exist
             //return array("status" => 500, "message" => "Invalid credentials.");
-            
+
             Flight::halt(500, "Invalid credentials.");
         }
 
         unset($user['password']);
+
+        $issue_time = time(); // issued at
+        $expiration_time = $issue_time + 3600; // expires after one hour
+    
+        // Add issue time and expiration time to the user data
+        $user['iat'] = $issue_time;
+        $user['exp'] = $expiration_time;
+
         $jwt = JWT::encode($user, Config::JWT_SECRET(), 'HS256');
 
         // If all checks pass, proceed with login or token generation etc.
@@ -133,15 +198,67 @@ class CustomerService extends BaseService
         return $this->dao->customUpdate($data);
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         try {
             $this->dao->delete($id);
         } catch (Exception $e) {
             throw new Exception('Error deleting customer: ' . $e->getMessage());
         }
     }
+
+    public function resetpassword($data){
+        $email = $data["email"];
+        $password = $data["password"];
+        $confirm_password = $data["confirm_password"];
+
+        if (!isset($email) || !isset($password) || !isset($confirm_password)) {
+            Flight::halt(500, "Fields cannot be empty.");
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return ["status" => 400, "message" => "E-mail address is not in the right format"];
+        }
+
+        if (!($this->checkExistenceForEmail($data["email"]))) {
+            Flight::halt(500, "Email does not exist.");
+        }
+
+        //check if the new and repeated password are the same
+        if (!hash_equals($password, $confirm_password)) {
+            Flight::halt(500, "New and repeated password are not the same.");
+        }
+
+        //now check if the new password  fits the criteria
+        if (mb_strlen($password) < 8) {
+            Flight::halt(500, "The password should be at least 8 characters long");
+        }
+
+        if (mb_strlen($password) > 15) {
+            return ["status" => 400, "message" => "The password should not be longer than 15 characters."];
+        }
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $daoResult = $this->updatePassword($hashedPassword, $email);
+
+        if ($daoResult["status"] == 500) {
+            Flight::halt(500, $daoResult["message"]);
+        } 
+        return $daoResult;
+    }
+
+    private function updatePassword($password, $email)
+    {
+        $result = Flight::customerDao()->updatePassword($password, $email);
+        return $result;
+    }
+
     
 
-
-
 }
+
+
+
+
+

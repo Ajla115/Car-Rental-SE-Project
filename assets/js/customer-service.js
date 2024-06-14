@@ -3,15 +3,28 @@
 var CustomerService = {
   emailValidator: function () {
     jQuery.validator.addMethod(
-      //this addMethod is an extension from jQuery.validator lib
-      "email",
+      "customEmail",
       function (value, element) {
-        return (
-          this.optional(element) ||
-          /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i.test(value) //test(value) je od regex objekta
-        );
+        // First check: General email format
+        var isValidEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i.test(value);
+        if (!isValidEmail) {
+          return false;
+        }
+
+        // Second check: Admin email format
+        if (/^.+@admin\.gmail\.com$/i.test(value)) {
+          return false; // Invalid if email is in the admin format
+        }
+
+        return true;
       },
-      "E-mail address is not in the right format."
+      function (params, element) {
+        // Custom message based on the invalid condition
+        if (/^.+@admin\.gmail\.com$/i.test(element.value)) {
+          return "Only an admin can register other admins. You can't register yourself with this email.";
+        }
+        return "E-mail address is not in the right format.";
+      }
     );
   },
 
@@ -53,7 +66,10 @@ var CustomerService = {
           required: true,
           lettersAndDash: true,
         },
-        email: "required",
+        email: {
+          required : true,
+          customEmail : true
+        },
         password: {
           required: true,
           minlength: 8,
@@ -70,7 +86,11 @@ var CustomerService = {
           required: "Last name field is empty.",
           lettersAndDash: "Only letters and dashes (-) are allowed in the last name." 
         },
-        email: "Email field is empty.",
+        email:{
+          required:"Email field is empty.",
+          customEmail: "E-mail address is not in the appropriate format."
+        },
+
         password: {
           required: "Password field is empty.",
           minlength:
@@ -95,16 +115,16 @@ var CustomerService = {
 
         $.post(" ../rest/customer", data)
           .done(function (response) {
-            const token = response.token;
+            //const token = response.token;
             const customer = response.customer;
             // Storing the JWT token in localStorage
-            localStorage.setItem("user_token", token);
+            //localStorage.setItem("user_token", token);
             toastr.success("User added to the database");
             form.reset();
 
             setTimeout(function () {
               /*window.location.href = '../index2.html'*/ window.location.replace(
-                "../index2.html"
+                "login.html"
               );
             }, 5000); // Redirect after 5 seconds to index2.html
           })

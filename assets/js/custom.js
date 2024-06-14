@@ -8,8 +8,7 @@ function fetchCustomers() {
         type: "GET",
         beforeSend: function(xhr) {
             xhr.setRequestHeader(
-                "Authorization",
-                "Bearer " + localStorage.getItem("jwt") // Assuming JWT is stored in localStorage
+                "Authorization", localStorage.getItem("user_token") // Assuming JWT is stored in localStorage
             );
         },
         success: function(data) {
@@ -40,8 +39,7 @@ function deleteCustomer(id) {
             type: "DELETE",
             beforeSend: function(xhr) {
                 xhr.setRequestHeader(
-                    "Authorization",
-                    "Bearer " + localStorage.getItem("jwt") // Assuming JWT is stored in localStorage
+                    "Authorization", localStorage.getItem("user_token") // Assuming JWT is stored in localStorage
                 );
             },
             success: function(data) {
@@ -49,6 +47,7 @@ function deleteCustomer(id) {
                 fetchCustomers();
             },
             error: function(jqXHR, textStatus, errorThrown) {
+                alert("User can't be deleted: Internal Server Error.");
                 console.error('Error deleting customer:', textStatus, errorThrown);
             }
         });
