@@ -272,13 +272,13 @@ class CustomerService extends BaseService
             //ovo debug off sam stavila da nemam onaj ogromni output, sta se desava u svakoj sekundi slanja emaila
 
             $mail->isSMTP(); //Send using SMTP
-            $mail->Host = 'smtp.eu.mailgun.org'; //Set the SMTP server to send through
+            $mail->Host = SMTP_HOST; //Set the SMTP server to send through
             $mail->SMTPAuth = true; //Enable SMTP authentication
-            $mail->Username = 'postmaster@dr-korman-ajla.tech'; //SMTP username
-            $mail->Password = '8f9103ee36c42bd4797841ece2c3da3b-ed54d65c-dcdb0b29'; //SMTP password
+            $mail->Username = SMTP_USERNAME; //SMTP username
+            $mail->Password = SMTP_PASSWORD; //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; //Enable implicit TLS encryption
-            $mail->Port = 587;
+            $mail->Port = SMTP_PORT;
             //465, TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //port 587 mi ovdje nije radio iako mi je bilo preporuceno da njega stavim
