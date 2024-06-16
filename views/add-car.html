@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Add New Car</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  
+  <link href="../assets/img/car-icon.png" rel="icon">
+
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
+  <script src="./assets/js/jquery.spapp.js"></script>
+  <script src="./assets/js/custom.js"></script>
+  <script src="./assets/js/intro.js"></script>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/rest-client.js"></script>
+  <script src="assets/js/user-service.js"></script>
+  <script src="./config.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="./assets/js/jQuerySPApp.js"></script>
+
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <style>
+    /* Custom styles for car management table */
+    .table-custom {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .table-custom th, .table-custom td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .table-custom th {
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    .table-custom tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .table-custom tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Custom styles for buttons */
+    .btn-custom {
+      background-color: #FFA500;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background-color: #ce9429;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <section id="addCar">
+    <div class="container">
+      <h1>Add New Car</h1>
+      <button class="btn-custom" onclick="history.back()">Go Back</button>
+      <form id="addCarForm">
+        <div class="form-group">
+          <label for="car_name">Car Name:</label>
+          <input type="text" class="form-control" id="car_name" name="car_name" required>
+        </div>
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <input type="text" class="form-control" id="price" name="price" required>
+        </div>
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <input type="number" class="form-control" id="age" name="age" required>
+        </div>
+        <div class="form-group">
+          <label for="mileage">Mileage:</label>
+          <input type="text" class="form-control" id="mileage" name="mileage" required>
+        </div>
+        <div class="form-group">
+          <label for="fuel">Fuel:</label>
+          <input type="text" class="form-control" id="fuel" name="fuel" required>
+        </div>
+        <div class="form-group">
+          <label for="fuel_usage">Fuel Usage:</label>
+          <input type="text" class="form-control" id="fuel_usage" name="fuel_usage" required>
+        </div>
+        <div class="form-group">
+          <label for="gearbox">Gearbox:</label>
+          <input type="text" class="form-control" id="gearbox" name="gearbox" required>
+        </div>
+        <div class="form-group">
+          <label for="max_passengers">Max Passengers:</label>
+          <input type="number" class="form-control" id="max_passengers" name="max_passengers" required>
+        </div>
+        <div class="form-group">
+          <label for="car_type">Car Type:</label>
+          <select class="form-control" id="car_type" name="car_type" required>
+            <option value="hatchback">Hatchback</option>
+            <option value="sedan">Sedan</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Car</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    $(document).ready(function() {
+      $('#addCarForm').submit(function(event) {
+        event.preventDefault();
+  
+        const carData = {
+          car_name: $('#car_name').val(),
+          price: $('#price').val(),
+          age: $('#age').val(),
+          mileage: $('#mileage').val(),
+          fuel: $('#fuel').val(),
+          fuel_usage: $('#fuel_usage').val(),
+          gearbox: $('#gearbox').val(),
+          max_passengers: $('#max_passengers').val(),
+          car_type: $('#car_type').val()
+        };
+  
+        $.ajax({
+          url: '../rest/carinfo',
+          type: 'POST',
+          data: JSON.stringify(carData),
+          contentType: 'application/json',
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader(
+                "Authorization",
+                 localStorage.getItem("user_token") 
+            );
+        },
+          success: function(response) {
+            alert(response.message);
+            $('#addCarForm')[0].reset();
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error adding car:', textStatus, errorThrown);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

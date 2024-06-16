@@ -19,6 +19,7 @@ var EmailService = {
                 $('.loading').show(); // Show loading indicator
                 $('.error-message').hide(); // Hide error messages initially
                 $('.sent-message').hide(); // Hide the sent message initially
+                xhr.setRequestHeader("Authorization",  localStorage.getItem("user_token"));
             },
             success: function(data) {
                 if (data.status === "success") {

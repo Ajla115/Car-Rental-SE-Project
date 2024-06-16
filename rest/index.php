@@ -4,6 +4,7 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 require '../vendor/autoload.php';
+require_once '../config_email.php';
 
 
 // import and register all business logic files (services) to FlightPHP
@@ -38,32 +39,35 @@ Flight::register('userDao', "UserDao");
 Flight::register('customerDao', "CustomerDao");
 
 // middleware
-// Flight::route('/*', function () {
+Flight::route('/*', function(){
+  //perform JWT decode
+  $path = Flight::request()->url;
+  if ($path == '/login'  || $path == '/resetpassword' || $path == '/sendemail' || $path == '/tests' || $path == '/visitors' ||  $path == '/customer' ||  $path == '/docs.json') return TRUE; 
 
-//   $path = Flight::request()->url;
-//   if ($path == '/login' || $path == '/customer' || $path == '/docs.json')
-//     return TRUE;
-//   //deleted || $path == '/customers' because that was not needed
-//   //login and signup are excluded from auth
-//   //since they are excluded, anybody can access those
-//   //this customer is related to route for signup
-
-//   $headers = getallheaders();
-//   //Flight::json(['headers' => $headers]);
-//   if (@!$headers['Authorization']) {
-//     Flight::json(["message" => "Authorization is missing"], 403);
-//     return FALSE;
-//   } else {
-//     try {
-//       $decoded = (array) JWT::decode($headers['Authorization'], new Key(Config::JWT_SECRET(), 'HS256'));
-//       Flight::set('user', $decoded);
-//       return TRUE;
-//     } catch (\Exception $e) {
-//       Flight::json(["message" => "Authorization token is not valid"], 403);
-//       return FALSE;
-//     }
-//   }
-// });
+ $headers = getallheaders();
+  if (@!$headers['Authorization']){
+    Flight::json(["message" => "Authorization is missing"], 403);
+    return FALSE;
+  }else{
+    try {
+      $decoded = (array) JWT::decode($headers['Authorization'], new Key(Config::JWT_SECRET(), 'HS256'));
+      $current_time = time();
+      if(isset($decoded['exp']) && $decoded['exp'] < $current_time){
+          Flight::json(["message" => "Authorization token has expired"], 403);
+          return FALSE;
+      }
+      if(isset($decoded['iat']) && $current_time - $decoded['iat'] > 86400){ // 86400 seconds = 24 hours
+          Flight::json(["message" => "Authorization token was issued more than 24 hours ago"], 403);
+          return FALSE;
+      }
+      Flight::set('user', $decoded);
+      return TRUE;
+  } catch (\Exception $e) {
+      Flight::json(["message" => "Authorization token is not valid"], 403);
+      return FALSE;
+  }
+}
+});
 
 
 /* REST API documentation endpoint */
@@ -92,4 +96,3 @@ require_once __DIR__ . '/routes/VisitsRoutes.php';
 
 
 Flight::start();
-?>

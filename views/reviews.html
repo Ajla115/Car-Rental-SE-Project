@@ -1,25 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Volkswagen</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-    <!-- Favicons -->
-    <link href="../assets/img/car-icon.png" rel="icon">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    
+    <link href="../assets/img/car-icon.png" rel="icon" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
+    <link href="../assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link href="../assets/css/style.css" rel="stylesheet" />
+    <style>
+      /* Review Form Styles */
+      .contentheight61 {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 50%;
+        margin: auto;
+        text-align: center;
+      }
+
+      .review-form {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+
+      .review-form h1 {
+        margin-bottom: 20px;
+        font-size: 24px;
+      }
+
+      .review-form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        text-align: left;
+      }
+
+      .review-form input[type="text"],
+      .review-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      .review-form input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .review-form input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+
+      /* Table Styles */
+      #reviewsTable {
+        width: 70%;
+        margin: 20px auto;
+        border-collapse: collapse;
+      }
+
+      #reviewsTable th, #reviewsTable td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+      }
+
+      #reviewsTable th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <!-- Navigation content -->
+    </nav>
+    <div class="contentheight61">
+      <h1>REVIEWS</h1>
+      <form id="reviewForm" class="review-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required class="form-control" />
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" name="surname" required class="form-control" />
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required class="form-control"></textarea>
+        <input type="submit" value="Submit Review" class="btn btn-primary mt-3" />
+      </form>
+    </div>
+    <div class="container mt-5">
+      <table id="reviewsTable" class="table table-bordered table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th>Name</th>
+            <th>Review</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="reviewsTableBody">
+        </tbody>
+      </table>
+    </div>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -29,115 +132,18 @@
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/payment.js"></script>
+    <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="../assets/vendor/aos/aos.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="../assets/vendor/php-email-form/validate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
-    <script src="assets/js/jquery.spapp.js"></script>
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/intro.js"></script>
-    <script src="assets/js/utils.js"></script>
-    <script src="assets/js/restclient.js"></script>
-    <script src="config.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/restclient.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="assets/js/jQuerySPApp.js"></script>
-    <script src="assets/js/user-service.js"></script>
-    <script src="assets/js/highcharts.js"></script>
-    <script src="assets/js/customer-service.js"></script>
-    <link href="assets/css/style.css" rel="stylesheet">
-    <script src="assets/js/AppRoutes.js"></script>
-    <script src="assets/js/review.js"></script>
-    <script src="assets/js/comments.js"></script>
-    <style>
-        /* Review Form Styles */
-        .contentheight61 {
-            margin-top: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 50%;
-            margin: auto;
-            text-align: center;
-        }
-
-        .review-form {
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-
-        .review-form h1 {
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-
-        .review-form label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            text-align: left;
-        }
-
-        .review-form input[type="text"],
-        .review-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        .review-form input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .review-form input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-
-<body>
-    <nav class="navbar">
-        <!-- Navigation content -->
-    </nav>
-    <div class="contentheight61">
-        <h1>REVIEWS</h1>
-        <form id="reviewForm" class="review-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="surname">Surname:</label>
-            <input type="text" id="surname" name="surname" required>
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" required></textarea>
-            <input type="submit" value="Submit Review">
-        </form>
-    </div>
-    <script>
-        ReviewService.getReview(/*1*/);
-        ReviewService.submitReview(/*1*/);
-        ReviewService.deleteReview();
-        ReviewService.editReview();
-    </script>
-</body>
-
+    <script src="../assets/js/testimonials.js"></script>
+  </body>
 </html>
 
-    
-    
-      
