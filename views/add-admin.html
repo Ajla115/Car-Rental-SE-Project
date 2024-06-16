@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Add New Admin</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="../assets/img/car-icon.png" rel="icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsonwebtoken@8.5.1/lib/index.js"></script>
+  <script src="../assets/js/utils.js"></script>
+
+  <style>
+    /* Custom styles for car management table */
+    .table-custom {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .table-custom th, .table-custom td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .table-custom th {
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    .table-custom tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .table-custom tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Custom styles for buttons */
+    .btn-custom {
+      background-color: #FFA500;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background-color: #ce9429;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <section id="addAdmin">
+    <div class="container">
+      <h1>Add New Admin</h1>
+      <button class="btn-custom" onclick="history.back()">Go Back</button>
+      <form id="addAdminForm">
+        <div class="form-group">
+          <label for="admin_name">Admin First Name:</label>
+          <input type="text" class="form-control" id="customer_name" name="customer_name" required>
+        </div>
+        <div class="form-group">
+          <label for="admin_surname">Admin Last Name:</label>
+          <input type="text" class="form-control" id="customer_surname" name="customer_surname" required>
+        </div>
+        <div class="form-group">
+          <label for="admin_email">Admin Email:</label>
+          <input type="text" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="admin_password">Admin Password:</label>
+          <div class="form-outline form-white mb-4 position-relative">
+            <input type="password" id="password" name="password" class="form-control form-control-lg" required />
+            <i class="bi bi-eye-slash position-absolute toggle-password" id="togglePassword"></i>
+        </div>
+          
+        <button type="submit" class="btn btn-primary">Add Admin</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    $(document).ready(function() {
+
+        Utils.password_toggle();
+
+      $.validator.addMethod("lettersAndDash", function(value, element) {
+        return this.optional(element) || /^[a-zA-Z-]+$/.test(value);
+      }, "Only letters and dashes are allowed.");
+
+      $.validator.addMethod("adminEmail", function(value, element) {
+        return this.optional(element) || /^.+@admin\.gmail\.com$/.test(value);
+      }, "Email must be in the format @admin.gmail.com.");
+
+      $("#addAdminForm").validate({
+        rules: {
+          customer_name: {
+            required: true,
+            lettersAndDash: true
+          },
+          customer_surname: {
+            required: true,
+            lettersAndDash: true
+          },
+          email: {
+            required: true,
+            adminEmail: true
+          },
+          password: {
+            required: true,
+            minlength: 8,
+            maxlength: 15
+          }
+        },
+        messages: {
+          customer_name: {
+            required: "First name field is empty.",
+            lettersAndDash: "Only letters and dashes are allowed in the first name."
+          },
+          customer_surname: {
+            required: "Last name field is empty.",
+            lettersAndDash: "Only letters and dashes are allowed in the last name."
+          },
+          email: {
+            required: "Email field is empty.",
+            adminEmail: "Email must be in the format @admin.gmail.com."
+          },
+          password: {
+            required: "Password field is empty.",
+            minlength: "Password is too short. Password must be at least 8 characters long.",
+            maxlength: "Password can't be longer than 15 characters."
+          }
+        },
+        submitHandler: function(form) {
+          const adminData = {
+            customer_name: $('#customer_name').val(),
+            customer_surname: $('#customer_surname').val(),
+            email: $('#email').val(),
+            password: $('#password').val()
+          };
+
+          $.ajax({
+            url: '../rest/addadmin',
+            type: 'POST',
+            data: JSON.stringify(adminData),
+            contentType: 'application/json',
+            beforeSend: function(xhr) {
+            xhr.setRequestHeader("Authorization", localStorage.getItem("user_token"));
+        },
+            success: function(response) {
+              alert("New admin successfully added.");
+              $('#addAdminForm')[0].reset();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.error('Error adding admin:', textStatus, errorThrown);
+            }
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
