@@ -44,11 +44,64 @@
   <script src="./assets/js/jQuerySPApp.js"></script>
 
   <link href="../assets/css/style.css" rel="stylesheet">
+  <style>
+    /* Custom styles for car management table */
+    .table-custom {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .table-custom th, .table-custom td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    .table-custom th {
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    .table-custom tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .table-custom tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Custom styles for buttons */
+    .btn-custom {
+      background-color: #FFA500;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background-color: #ce9429;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+  </style>
 </head>
 <body>
   <section id="addCar">
     <div class="container">
       <h1>Add New Car</h1>
+      <button class="btn-custom" onclick="history.back()">Go Back</button>
       <form id="addCarForm">
         <div class="form-group">
           <label for="car_name">Car Name:</label>

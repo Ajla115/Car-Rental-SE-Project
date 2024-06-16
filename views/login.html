@@ -52,41 +52,40 @@
 
     </header>
 
-  <section id="login" class = "page1">
-    <div class="container py-1 h-100"> <!-- reduced vertical padding here -->
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card" style="border-radius: 1rem;">
-            <div class="card-body p-3"> <!-- reduced padding inside the card body -->
-  
-              <div class="mb-md-1 mt-md-1 pb-1"> <!-- reduced margins here -->
-  
-                <h3 class="fw-bold mb-2">Login</h3>
-                <p class="account-check">
-                  Forgot password? <a href="forget-password.html">Click here</a>
-              </p>
-                <div class="line-separator"></div>
-                <form id="login-form" role="form"> 
-                <label class="form-label" for="email">Email</label>
-                <div class="form-outline form-white mb-4">
-                  <input type="email" id="email" name ="email" class="form-control form-control-lg" />
+    <section id="login" class="page1">
+      <div class="container py-1 h-100"> <!-- reduced vertical padding here -->
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card" style="border-radius: 1rem;">
+              <div class="card-body p-3"> <!-- reduced padding inside the card body -->
+                <div class="mb-md-1 mt-md-1 pb-1"> <!-- reduced margins here -->
+                  <h3 class="fw-bold mb-2">Login</h3>
+                  <p class="account-check">
+                    Forgot password? <a href="forget-password.html">Click here</a>
+                  </p>
+                  <div class="line-separator"></div>
+                  <form id="login-form" role="form"> 
+                    <label class="form-label" for="email">Email</label>
+                    <div class="form-outline form-white mb-4">
+                      <input type="email" id="email" name="email" class="form-control form-control-lg" />
+                    </div>
+                    <label class="form-label" for="password">Password:</label>
+                    <div class="form-outline form-white mb-4 position-relative">
+                      <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                      <i class="bi bi-eye-slash position-absolute toggle-password" id="togglePassword"></i>
+                    </div>
+                    <button class="btn btn-lg px-5" type="submit">LOGIN</button>
+                  </form>
+                  <p class="account-check mt-2">
+                    Don't have an account? <a href="index.html">Click here</a>
+                  </p>
                 </div>
-                <label class="form-label" for="password">Password:</label>
-                <div class="form-outline form-white mb-4 position-relative">
-                    <input type="password" id="password" name="password" class="form-control form-control-lg" />
-                    <i class="bi bi-eye-slash position-absolute toggle-password" id="togglePassword"></i>
-                </div>
-                <button class="btn btn-lg px-5" type="submit">LOGIN</button>
-                </form>
               </div>
-
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
+    </section>
   <script>
   
   //UserService.init();

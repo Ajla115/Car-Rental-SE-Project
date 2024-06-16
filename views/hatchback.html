@@ -225,7 +225,7 @@
     <section id="payment" data-load="payment.html"></section>
   </main>
 
-  <section id="sedan" class="d-flex align-items-center justify-content-center">
+  <section id="hatch" class="d-flex align-items-center justify-content-center">
     <div class="section-title">
       <h1>HATCHBACK<span>.</span></h1>
       <h3>Explore our hatcback cars</h3>
@@ -281,19 +281,19 @@
           data.forEach(function(car) {
             const carCard = `
               <div class="col-md-4">
-                <div class="car-wrap rounded ftco-animate">
-                  <div class="img rounded d-flex align-items-end" style="background-image: url(./assets/css/wp6924449.webp);"></div>
-                  <div class="text">
-                    <h2 class="mb-0"><a href="#carDetail">${car.car_name}</a></h2>
-                    <div class="d-flex mb-3">
-                      <p class="price">${car.price} BAM <span>per day</span></p>
-                    </div>
-                    <p class="d-flex mb-0 d-block">
-                      <a href="#payment" class="BookNowButton"><span class="ButtonText">BOOK NOW</span></a>
-                      <a onclick="showCarDetail(${car.id})" class="btn btn-secondary py-2 ml-1">DETAILS</a>
-                    </p>
-                  </div>
-                </div>
+                <div class="car-wrap custom-car-wrap rounded ftco-animate">
+  <div class="img rounded d-flex align-items-end" style="background-image: url(./assets/css/wp6924449.webp);"></div>
+  <div class="text">
+    <h2 class="mb-0"><a href="#carDetail">${car.car_name}</a></h2>
+    <div class="d-flex mb-3">
+      <p class="price">${car.price} BAM <span>per day</span></p>
+    </div>
+    <p class="d-flex mb-0 d-block">
+      <a href="#payment" class="btn btn-secondary py-2 ml-1"><span class="ButtonText">BOOK NOW</span></a>
+      <a onclick="showCarDetail(${car.id})" class="btn btn-secondary py-2 ml-1">DETAILS</a>
+    </p>
+  </div>
+</div>
               </div>
             `;
             carContainer.append(carCard);

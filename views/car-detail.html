@@ -52,16 +52,18 @@
 
     
 
-  <section id="carDetail">
+  <section id="carDetail" class="py-5">
     <div class="container">
-      <h1>Car Details</h1>
-      <div id="carDetailContainer">
+      <h1 class="text-center mb-4">Car Details</h1>
+      <div id="carDetailContainer" class="row">
         <!-- Car details will be dynamically populated here -->
-      
+      </div>
     </div>
-    
+    <div class="text-center mt-4">
+      <button type="button" class="btn btn-primary btn-sm small-button" onClick="window.location.href='reviews.html'">Reviews</button>
+    </div>
   </section>
-  </div><button type="button" class="btn btn-info btn-sm" onClick="window.location.href='reviews.html'">Reviews</button>
+  
 
   <script>
     $(document).ready(function() {
@@ -76,38 +78,44 @@
     });
 
     function fetchCarDetails(carId) {
-      $.ajax({
-        url: `../rest/carinfo/${carId}`,
-        type: "GET",
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader("Authorization", localStorage.getItem("user_token"));
-        },
-        success: function(data) {
-          const car = data[0];
-          const carDetailHtml = `
-            <div class="cardetails">
-              <div class="img rounded d-flex align-items-end" style="background-image: url(../assets/img/aboutUs2.jpg);"></div>
-            </div>
-            <div class="vw7description">
-              <h1>
-                <li><span>Car Name:</span> ${car.car_name}</li>
-                <li><span>Price:</span> ${car.price} BAM</li>
-                <li><span>Age:</span> ${car.age} years</li>
-                <li><span>Milage:</span> ${car.mileage} km</li>
-                <li><span>Fuel:</span> ${car.fuel}</li>
-                <li><span>Fuel Usage:</span> ${car.fuel_usage} L/100 km</li>
-                <li><span>Gearbox:</span> ${car.gearbox}</li>
-                <li><span>Max Passengers:</span> ${car.max_passengers}</li>
-              </h1>
-            </div>
-          `;
-          $('#carDetailContainer').html(carDetailHtml);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          console.error('Error fetching car details:', textStatus, errorThrown);
-        }
-      });
+  $.ajax({
+    url: `../rest/carinfo/${carId}`,
+    type: "GET",
+    beforeSend: function(xhr) {
+        xhr.setRequestHeader("Authorization", localStorage.getItem("user_token"));
+    },
+    success: function(data) {
+      const car = data[0];
+      const carDetailHtml = `
+ <div class="row">
+  <div class="col-md-6">
+    <div class="img rounded d-flex align-items-end" style="background-image: url(../assets/img/universal-car.jpg); height: 300px; background-size: cover; display: flex; flex-basis: 50%;"> <!-- Add display: flex and flex-basis: 50% -->
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="vw7description">
+      <ul>
+        <li><span>Car Name:</span> ${car.car_name}</li>
+        <li><span>Price:</span> ${car.price} BAM</li>
+        <li><span>Age:</span> ${car.age} years</li>
+        <li><span>Mileage:</span> ${car.mileage} km</li>
+        <li><span>Fuel:</span> ${car.fuel}</li>
+        <li><span>Fuel Usage:</span> ${car.fuel_usage} L/100 km</li>
+        <li><span>Gearbox:</span> ${car.gearbox}</li>
+        <li><span>Max Passengers:</span> ${car.max_passengers}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+      $('#carDetailContainer').html(carDetailHtml);
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.error('Error fetching car details:', textStatus, errorThrown);
     }
+  });
+}
+
   </script>
 
 </body>

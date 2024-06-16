@@ -10,22 +10,22 @@
   <meta content="" name="keywords">
 
 
-    <!-- Favicon -->
-    <link href="../assets/img/car-icon.png" rel="icon">
-  
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  
-    <!-- Vendor CSS Files -->
-    <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> <!--potrebno za carrousel-->
-  
+  <!-- Favicon -->
+  <link href="../assets/img/car-icon.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> <!--potrebno za carrousel-->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -52,31 +52,31 @@
 
 
 
-<link href="../assets/css/style.css" rel="stylesheet"> 
- 
+  <link href="../assets/css/style.css" rel="stylesheet">
 
- <style>
-      .user-nav-link {
-        margin-left: -15px;
-      }
 
-      .custom-div {
-        border: 1px solid #ced4da;
-        border-radius: .25rem;
-        padding: .375rem .75rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        color: #495057;
-        background-color: #fff;
-        background-clip: padding-box;
+  <style>
+    .user-nav-link {
+      margin-left: -15px;
+    }
+
+    .custom-div {
+      border: 1px solid #ced4da;
+      border-radius: .25rem;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
         transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-      }
+    }
 
-      .title-spacing {
-        margin-right: 690px;
-      }
+    .title-spacing {
+      margin-right: 690px;
+    }
 
- </style>
+  </style>
 
 </head>
 
@@ -84,94 +84,94 @@
   
 
 
-<section id="user">
-  <br>
-  <br>
-  <div class="container">
-    <div class="section-title d-flex justify-content-center align-items-center flex-column">
-      <img src="./assets/img/userIcon.png" alt="User profile icon" class="img-fluid section-title user-logo">
-      <h3 class="user-name" id="fullnameDiv"></h3>
-      <h3 class="user-name" id="customerID"></h3>
-    </div>
+  <section id="user">
     <br>
-    <div class="form-row">
-      <h4 class="title title-spacing">Account Information</h4>
-      <div class="button-container" id="buttonContainer">
-        <button type="button" onClick="UserService.logout()" class="btn btn-danger btn-sm" id="logoutButton">Logout</button>
-        <button type="button" onClick="window.location.href='views/listofusers.html'" class="btn btn-info btn-sm" id="listUsersButton">List of Users</button>
-        <button type="button" class="btn btn-info btn-sm" onClick="window.location.href='views/add-car.html'" id="addCarButton">Add Car</button>
-        <button onclick="location.href='views/manage-car.html'" class="btn btn-info btn-sm" id="manageCarButton">Manage Car</button>
-        <button onclick="location.href='views/add-admin.html'" class="btn btn-info btn-sm" id="addAdminButton">Add Admin</button>
-        <button onclick="location.href='views/listofadmins.html'" class="btn btn-info btn-sm" id="listAdminsButton">List of Admins</button>
+    <br>
+    <div class="container">
+      <div class="section-title d-flex justify-content-center align-items-center flex-column">
+        <img src="./assets/img/userIcon.png" alt="User profile icon" class="img-fluid section-title user-logo">
+        <h3 class="user-name" id="fullnameDiv"></h3>
+        <h3 class="user-name" id="customerID"></h3>
       </div>
-    </div>
-    <hr>
+      <br>
+      <div class="form-row">
+        <h4 class="title title-spacing">Account Information</h4>
+        <div class="button-container" id="buttonContainer">
+          <button type="button" onClick="UserService.logout()" class="btn btn-danger btn-sm" id="logoutButton">Logout</button>
+          <button type="button" onClick="window.location.href='views/listofusers.html'" class="btn btn-info btn-sm" id="listUsersButton">List of Users</button>
+          <button type="button" class="btn btn-info btn-sm" onClick="window.location.href='views/add-car.html'" id="addCarButton">Add Car</button>
+          <button onclick="location.href='views/manage-car.html'" class="btn btn-info btn-sm" id="manageCarButton">Manage Car</button>
+          <button onclick="location.href='views/add-admin.html'" class="btn btn-info btn-sm" id="addAdminButton">Add Admin</button>
+          <button onclick="location.href='views/listofadmins.html'" class="btn btn-info btn-sm" id="listAdminsButton">List of Admins</button>
+        </div>        
+      </div>
+      <hr>
     <div class="form-group col-md-6">
-      <label>First name</label>
-      <div class="custom-div" id="firstnameDivContainer">
-        <span id="firstnameDiv"></span>
-        <input type="text" class="form-control" id="firstnameInput" style="display:none;">
+        <label>First name</label>
+        <div class="custom-div" id="firstnameDivContainer">
+          <span id="firstnameDiv"></span>
+          <input type="text" class="form-control" id="firstnameInput" style="display:none;">
+        </div>
       </div>
-    </div>
     <div class="form-group col-md-6">
-      <label>Last name</label>
-      <div class="custom-div" id="lastnameDivContainer">
-        <span id="lastnameDiv"></span>
-        <input type="text" class="form-control" id="lastnameInput" style="display:none;">
+        <label>Last name</label>
+        <div class="custom-div" id="lastnameDivContainer">
+          <span id="lastnameDiv"></span>
+          <input type="text" class="form-control" id="lastnameInput" style="display:none;">
+        </div>
       </div>
-    </div>
-    <div class="form-group col-md-12">
-      <label>Email</label>
-      <div class="custom-div" id="emailDivContainer">
-        <span id="emailDiv"></span>
-        <input type="email" class="form-control" id="emailInput" style="display:none;">
+      <div class="form-group col-md-12">
+        <label>Email</label>
+        <div class="custom-div" id="emailDivContainer">
+          <span id="emailDiv"></span>
+          <input type="email" class="form-control" id="emailInput" style="display:none;">
+        </div>
       </div>
-    </div>
-    <div class="form-row">
-      <div class="button-container">
-        <button id="editButton" class="btn btn-primary btn-sm" onclick="UserService.editAllFields()">Edit All</button>
-        <button id="saveButton" class="btn btn-success btn-sm" onclick="UserService.saveAllFields()" style="display:none;">Save All</button>
-        <button id="cancelButton" class="btn btn-secondary btn-sm" onclick="UserService.cancelAllEdits()" style="display:none;">Cancel</button>
+      <div class="form-row">
+        <div class="button-container">
+          <button id="editButton" class="btn btn-primary btn-sm small-button" onclick="UserService.editAllFields()">Edit All</button>
+          <button id="saveButton" class="btn btn-success btn-sm small-button" onclick="UserService.saveAllFields()" style="display:none;">Save All</button>
+          <button id="cancelButton" class="btn btn-secondary btn-sm small-button" onclick="UserService.cancelAllEdits()" style="display:none;">Cancel</button>
+        </div>
       </div>
-    </div>
-  </div>
-  <hr>
-</section>
-
-<script>
-  var UserService1 = {
-    getUserInformation: function() {
-      var token = localStorage.getItem("user_token");
-      var payload = JSON.parse(atob(token.split(".")[1]));
-
-      document.getElementById("customerID").innerText = "ID: " + payload.id;
-      document.getElementById("fullnameDiv").innerText = payload.customer_name + " " + payload.customer_surname;
-      document.getElementById("firstnameDiv").innerText = payload.customer_name;
-      document.getElementById("lastnameDiv").innerText = payload.customer_surname;
-      document.getElementById("emailDiv").innerText = payload.email;
-
-      var email = payload.email;
-      var emailPattern = /^.+@admin\.gmail\.com$/;
-
-      if (emailPattern.test(email)) {
-        document.getElementById("listUsersButton").style.display = "inline-block";
-        document.getElementById("addCarButton").style.display = "inline-block";
-        document.getElementById("manageCarButton").style.display = "inline-block";
-        document.getElementById("addAdminButton").style.display = "inline-block";
-        document.getElementById("listAdminsButton").style.display = "inline-block";
-      } else {
-        document.getElementById("listUsersButton").style.display = "none";
-        document.getElementById("addCarButton").style.display = "none";
-        document.getElementById("manageCarButton").style.display = "none";
-        document.getElementById("addAdminButton").style.display = "none";
-        document.getElementById("listAdminsButton").style.display = "none";
-      }
-    },
     
+      <hr>
+  </section>
+
+  <script>
+  var UserService1 = {
+      getUserInformation: function() {
+        var token = localStorage.getItem("user_token");
+        var payload = JSON.parse(atob(token.split(".")[1]));
+
+        document.getElementById("customerID").innerText = "ID: " + payload.id;
+        document.getElementById("fullnameDiv").innerText = payload.customer_name + " " + payload.customer_surname;
+        document.getElementById("firstnameDiv").innerText = payload.customer_name;
+        document.getElementById("lastnameDiv").innerText = payload.customer_surname;
+        document.getElementById("emailDiv").innerText = payload.email;
+
+        var email = payload.email;
+        var emailPattern = /^.+@admin\.gmail\.com$/;
+
+        if (emailPattern.test(email)) {
+          document.getElementById("listUsersButton").style.display = "inline-block";
+          document.getElementById("addCarButton").style.display = "inline-block";
+          document.getElementById("manageCarButton").style.display = "inline-block";
+          document.getElementById("addAdminButton").style.display = "inline-block";
+          document.getElementById("listAdminsButton").style.display = "inline-block";
+        } else {
+          document.getElementById("listUsersButton").style.display = "none";
+          document.getElementById("addCarButton").style.display = "none";
+          document.getElementById("manageCarButton").style.display = "none";
+          document.getElementById("addAdminButton").style.display = "none";
+          document.getElementById("listAdminsButton").style.display = "none";
+        }
+      },
+
   };
 
   UserService1.getUserInformation();
-</script>
+  </script>
 
 
 
