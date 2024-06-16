@@ -50,7 +50,7 @@ class Config
 }*/
 
 //ILMINA KONFIGURACIJA
-/*
+
 class Config
 {
     //This part below will be used when deploying the whole project with digital ocean
@@ -81,9 +81,10 @@ class Config
         return isset($_ENV[$name]) && trim($_ENV[$name]) != ' ' ? $_ENV[$name] : $default;
     }
 
-} */
+} 
 
 //EMININA KONFIGURACIJA
+/*
 class Config
 {
     //This part below will be used when deploying the whole project with digital ocean
@@ -116,3 +117,4 @@ class Config
 
 }
 
+*/
