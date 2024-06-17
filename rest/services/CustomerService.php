@@ -1,7 +1,7 @@
 <?php
 require_once 'BaseService.php';
 require_once __DIR__ . "/../dao/CustomerDao.class.php";
-require_once __DIR__ . '/../config.php';
+//require_once __DIR__ . '/../config.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -273,13 +273,13 @@ class CustomerService extends BaseService
             //ovo debug off sam stavila da nemam onaj ogromni output, sta se desava u svakoj sekundi slanja emaila
 
             $mail->isSMTP(); //Send using SMTP
-            $mail->Host = Config::SMTP_HOST; //Set the SMTP server to send through
+            $mail->Host = Config::SMTP_HOST(); //Set the SMTP server to send through
             $mail->SMTPAuth = true; //Enable SMTP authentication
-            $mail->Username = Config::SMTP_USERNAME; //SMTP username
-            $mail->Password = Config::SMTP_PASSWORD; //SMTP password
+            $mail->Username = Config::SMTP_USERNAME(); //SMTP username
+            $mail->Password = Config::SMTP_PASSWORD(); //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; //Enable implicit TLS encryption
-            $mail->Port = Config::SMTP_PORT;
+            $mail->Port = Config::SMTP_PORT();
             //465, TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //port 587 mi ovdje nije radio iako mi je bilo preporuceno da njega stavim
