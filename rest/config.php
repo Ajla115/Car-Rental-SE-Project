@@ -111,16 +111,16 @@ class Config
         return Config::get_env("JWT_SECRET", "web");
     }
     public static function SMTP_HOST(){
-        return Config::get_env("SMTP_HOST", ""); //
+        return Config::get_env("SMTP_HOST", "novanova123"); //
     }
     public static function SMTP_USERNAME(){
-        return Config::get_env("SMTP_USERNAME", "");
+        return Config::get_env("SMTP_USERNAME", "nova123");
     }
     public static function SMTP_PASSWORD(){
-        return Config::get_env("SMTP_PASSWORD", "");
+        return Config::get_env("SMTP_PASSWORD", "nova123nova");
     }
     public static function SMTP_PORT(){
-        return Config::get_env("SMTP_PORT", "");
+        return Config::get_env("SMTP_PORT", "254");
     }
 
     public static function get_env($name, $default){
