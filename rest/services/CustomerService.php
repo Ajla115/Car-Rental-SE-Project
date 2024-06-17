@@ -76,11 +76,11 @@ class CustomerService extends BaseService
             return ["status" => 400, "message" => "Only an admin can register other admins. You can't register yourself with this email."];
         }
 
-        if (mb_strlen($password) < 8) {
+        if (strlen($password) < 8) {
             return ["status" => 400, "message" => "The password should not be shorter than 8 characters."];
         }
 
-        if (mb_strlen($password) > 15) {
+        if (strlen($password) > 15) {
             return ["status" => 400, "message" => "The password should not be longer than 15 characters."];
         }
 
@@ -131,11 +131,11 @@ class CustomerService extends BaseService
             return ["status" => 400, "message" => "Admin email must be in the form @admin.gmail.com."];
         }
 
-        if (mb_strlen($password) < 8) {
+        if (strlen($password) < 8) {
             return ["status" => 400, "message" => "The password should not be shorter than 8 characters."];
         }
 
-        if (mb_strlen($password) > 15) {
+        if (strlen($password) > 15) {
             return ["status" => 400, "message" => "The password should not be longer than 15 characters."];
         }
 
@@ -235,11 +235,11 @@ class CustomerService extends BaseService
         }
 
         //now check if the new password  fits the criteria
-        if (mb_strlen($password) < 8) {
+        if (strlen($password) < 8) {
             Flight::halt(500, "The password should be at least 8 characters long");
         }
 
-        if (mb_strlen($password) > 15) {
+        if (strlen($password) > 15) {
             return ["status" => 400, "message" => "The password should not be longer than 15 characters."];
         }
 
